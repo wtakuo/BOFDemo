@@ -28,6 +28,13 @@ int main(int argc, char *argv[]) {
         perror(sc_file);
         exit(EXIT_FAILURE);
     }
+    fseek(fp, 0L, SEEK_END);
+    if (blen - 8 < ftell(fp)) {
+        fprintf(stderr, "%s: too big to fit the buffer\n", sc_file);
+        fclose(fp);
+        exit(EXIT_FAILURE);
+    }
+    fseek(fp, 0L, SEEK_SET);
     int c, k = 0;
     while ((c = getc(fp)) != EOF && k < blen)
         buf[k++] = c;
