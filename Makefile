@@ -1,7 +1,7 @@
 # BOFDemo: A simple buffer overflow vulnerability demo for IA-32
 
 CC = gcc
-CFLAGS = -std=c99 -pedantic -Wall -Werror \
+CFLAGS = -std=c99 -pedantic -m32 -Wall -Werror \
 	 -fno-stack-protector -mpreferred-stack-boundary=2
 LDFLAGS = -z execstack
 
@@ -17,7 +17,7 @@ SC_ADDR  = 0xbfffeb80
 all: demo mkattack shellcode.bin
 
 shellcode.o: shellcode.s
-	$(CC) -c $<
+	$(CC) -m32 -c $<
 
 shellcode.bin: shellcode.o
 	$(OBJCOPY) -O binary $< $@

@@ -1,10 +1,10 @@
 demo
 mkdata
 runsh
-attack.dat
 
 *.o
 *.bin
+*.dat
 
 *~
 .DS_Store

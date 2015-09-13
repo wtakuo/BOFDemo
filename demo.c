@@ -14,13 +14,13 @@ unsigned char pc(unsigned char c) {
 }
 
 void stack_dump(void *p, int n) {
-    unsigned long *up = (unsigned long *)p;
+    unsigned int *up = (unsigned int *)p;
     printf("----------------------------------------------\n");
-    printf(" #  |   addr  |  ulong   | +0 +1 +2 +3 | 0123 \n");
+    printf(" #  |   addr  |  uint    | +0 +1 +2 +3 | 0123 \n");
     printf("----------------------------------------------\n");
     for (int i = 0; i < n; i++) {
         unsigned char *ub = (unsigned char *)&up[i];
-        printf("%3d | %08lx| %08lx", i, (unsigned long)&up[i], up[i]);
+        printf("%3d | %08x| %08x", i, (unsigned int)&up[i], up[i]);
         printf(" | %02x %02x %02x %02x", ub[0], ub[1], ub[2], ub[3]);
         printf(" | %c%c%c%c\n",
                pc(ub[0]), pc(ub[1]), pc(ub[2]), pc(ub[3]));
