@@ -1,7 +1,7 @@
 # BOFDemo: A simple buffer overflow vulnerability demo for IA-32
 
 CC = gcc
-CFLAGS = -std=c99 -pedantic -m32 -Wall -Werror -fno-stack-protector
+CFLAGS = -std=c99 -pedantic -m32 -Wall -Werror -fno-stack-protector -g
 LDFLAGS = -z execstack
 
 OBJCOPY = objcopy

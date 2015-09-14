@@ -1,6 +1,7 @@
 demo
 mkattack
 
+core
 *.o
 *.bin
 *.dat
