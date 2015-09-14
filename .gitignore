@@ -1,6 +1,5 @@
 demo
-mkdata
-runsh
+mkattack
 
 *.o
 *.bin
