@@ -8,17 +8,23 @@ OBJCOPY = objcopy
 RM = rm -f
 
 RET_OFF   = 20
-SC_ADDR  = 0xbfffeb7c
+# SC_ADDR  = 0xbfffeb7c
+SC_ADDR  = 0xffffcb7c
 
-.PHONY: all clean allclean
+.PHONY: all data clean allclean
 
 all: demo mkattack shellcode.bin
+
+data: normal.dat attack.dat
 
 shellcode.o: shellcode.s
 	$(CC) -m32 -c $<
 
 shellcode.bin: shellcode.o
 	$(OBJCOPY) -O binary $< $@
+
+normal.dat:
+	echo 1234 > $@
 
 attack.dat: shellcode.bin mkattack
 	./mkattack shellcode.bin $(RET_OFF) $(SC_ADDR) > $@
