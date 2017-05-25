@@ -1,15 +1,15 @@
 # BOFDemo: A simple buffer overflow vulnerability demo for IA-32
 
 CC = gcc
-CFLAGS = -std=c99 -pedantic -m32 -Wall -Werror -fno-stack-protector -g
+CFLAGS = -std=c11 -pedantic -Wall -Wextra -Werror -m32 -fno-stack-protector -g
 LDFLAGS = -z execstack
 
 OBJCOPY = objcopy
 RM = rm -f
 
 RET_OFF   = 20
-# SC_ADDR  = 0xbfffeb7c
-SC_ADDR  = 0xffffcb7c
+SC_ADDR  = 0xbfffeb8c
+#SC_ADDR  = 0xffffcb7c
 
 .PHONY: all data clean allclean
 
@@ -38,3 +38,4 @@ allclean: clean
 	$(RM) *.dat
 	$(RM) a.out
 	$(RM) *~ .DS_Store
+
