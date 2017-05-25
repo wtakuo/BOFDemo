@@ -1,4 +1,5 @@
 // BOFDemo: a simple buffer overflow vulnerability demo
+// Copyright (c) 2015-2017 Takuo Watanabe
 
         .text
         .globl  shellcode

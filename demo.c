@@ -1,5 +1,6 @@
 /*
  * BOFDemo: A simple buffer overflow vulnerability demo for IA-32
+ * Copyright (c) 2015-2017 Takuo Watanabe
  */
 
 #include <stdio.h>

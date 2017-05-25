@@ -1,4 +1,5 @@
 # BOFDemo: A simple buffer overflow vulnerability demo for IA-32
+# Copyright (c) 2015-2017 Takuo Watanabe
 
 CC = gcc
 CFLAGS = -std=c11 -pedantic -Wall -Wextra -Werror -m32 -fno-stack-protector -g
